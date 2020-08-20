@@ -66,34 +66,32 @@ function createProjectSpecTsConfig(
   context: SchematicContext
 ) {
   const path = `${project.root}/tsconfig.spec.json`;
-  if (!tree.exists(path)) {
-    context.logger.info(`${path} does not exist, skipping`);
-    return;
-  }
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
-  tree.overwrite(
-    path,
-    `
-{
-    "extends": "./tsconfig.json",
-    "compilerOptions": {
-        "outDir": "${folderDeepness}dist/out-tsc",
-        "module": "commonjs",
-        "types": [
-            "jest",
-            "node"
-        ]
-    },
-    "files": [
-        "src/test-setup.ts"
-    ],
-    "include": [
-        "**/*.spec.ts",
-        "**/*.d.ts"
-    ]
-}
-`
-  );
+  const content = `
+  {
+      "extends": "./tsconfig.json",
+      "compilerOptions": {
+          "outDir": "${folderDeepness}dist/out-tsc",
+          "module": "commonjs",
+          "types": [
+              "jest",
+              "node"
+          ]
+      },
+      "files": [
+          "src/test-setup.ts"
+      ],
+      "include": [
+          "**/*.spec.ts",
+          "**/*.d.ts"
+      ]
+  }
+  `;
+  if (!tree.exists(path)) {
+    tree.create(path, content);
+  } else {
+    tree.overwrite(path, content);
+  }
 }
 
 function createProjectLibTsConfig(
@@ -102,24 +100,22 @@ function createProjectLibTsConfig(
   context: SchematicContext
 ) {
   const path = `${project.root}/tsconfig.json`;
-  // if (!tree.exists(path)) {
-  //   context.logger.info(`${path} does not exist, skipping`);
-  //   return;
-  // }
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
-  tree.overwrite(
-    path,
-    `
-    {
-      "extends": "./tsconfig.json",
-      "compilerOptions": {
-        "outDir": "${folderDeepness}dist/out-tsc",
-        "types": [],
-      },
-      "exclude": ["src/test.ts", "**/*.spec.ts"]
-    }
-`
-  );
+  const content = `
+  {
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+      "outDir": "${folderDeepness}dist/out-tsc",
+      "types": [],
+    },
+    "exclude": ["src/test.ts", "**/*.spec.ts"]
+  }
+  `;
+  if (!tree.exists(path)) {
+    tree.create(path, content);
+  } else {
+    tree.overwrite(path, content);
+  }
 }
 
 function createProjectTsConfig(
