@@ -21,6 +21,8 @@ export function createProjectsJestFiles(
 
     createProjectJestConfig(tree, project, _context, projectName);
     createProjectSpecTsConfig(tree, project, _context);
+    createProjectLibTsConfig(tree, project, _context);
+    createProjectTsConfig(tree, project, _context);
     createTestSetup(tree, project, _context);
 
     return tree;
@@ -88,6 +90,63 @@ function createProjectSpecTsConfig(
     "include": [
         "**/*.spec.ts",
         "**/*.d.ts"
+    ]
+}
+`
+  );
+}
+
+function createProjectLibTsConfig(
+  tree: Tree,
+  project: experimental.workspace.WorkspaceProject,
+  context: SchematicContext
+) {
+  const path = `${project.root}/tsconfig.json`;
+  // if (!tree.exists(path)) {
+  //   context.logger.info(`${path} does not exist, skipping`);
+  //   return;
+  // }
+  const folderDeepness = calculateTraverseUptoRootPath(project.root);
+  tree.overwrite(
+    path,
+    `
+    {
+      "extends": "./tsconfig.json",
+      "compilerOptions": {
+        "outDir": "${folderDeepness}dist/out-tsc",
+        "types": [],
+      },
+      "exclude": ["src/test.ts", "**/*.spec.ts"]
+    }
+`
+  );
+}
+
+function createProjectTsConfig(
+  tree: Tree,
+  project: experimental.workspace.WorkspaceProject,
+  context: SchematicContext
+) {
+  const path = `${project.root}/tsconfig.json`;
+  // if (!tree.exists(path)) {
+  //   context.logger.info(`${path} does not exist, skipping`);
+  //   return;
+  // }
+  const folderDeepness = calculateTraverseUptoRootPath(project.root);
+  tree.overwrite(
+    path,
+    `
+{
+    "extends": "${folderDeepness}tsconfig.base.json",
+    "files": [],
+    "include": [],
+    "references": [
+      {
+        "path": "./tsconfig.lib.json"
+      },
+      {
+        "path": "./tsconfig.spec.json"
+      }
     ]
 }
 `
