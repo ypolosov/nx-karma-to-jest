@@ -65,7 +65,7 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "nx-karma-to-jest:build",
-            "npmPackageName": "@offeringsolutions/nx-karma-to-jest",
+            "npmPackageName": "@ypolosov/nx-karma-to-jest",
             "pluginOutputPath": "dist/libs/nx-karma-to-jest",
             "jestConfig": "apps/nx-karma-to-jest-e2e/jest.config.js",
             "tsSpecConfig": "apps/nx-karma-to-jest-e2e/tsconfig.spec.json"

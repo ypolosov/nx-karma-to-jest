@@ -25,7 +25,7 @@ describe('Command Runner Builder', () => {
   it('can run', async () => {
     // A "run" can have multiple outputs, and contains progress information.
     const run = await architect.scheduleBuilder(
-      '@offeringsolutions/nx-karma-to-jest:build',
+      '@ypolosov/nx-karma-to-jest:build',
       options
     );
     // The "result" member (of type BuilderOutput) is the next output.

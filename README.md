@@ -1,16 +1,14 @@
 # Nx Karma To Jest Schematic for Angular Projects
 
 ![TravisCi build](https://travis-ci.org/FabianGosebrink/nx-karma-to-jest.svg?branch=master 'Travis CI Build')
-[![npm (scoped)](https://img.shields.io/npm/v/@offeringsolutions/nx-karma-to-jest.svg)](https://www.npmjs.com/package/@offeringsolutions/nx-karma-to-jest)
-
-
+[![npm (scoped)](https://img.shields.io/npm/v/@ypolosov/nx-karma-to-jest.svg)](https://www.npmjs.com/package/@ypolosov/nx-karma-to-jest)
 
 ![commandline usage](.github/ng-cmd.png 'Commandline usage')
 
 ## Usage
 
 ```
-ng add @offeringsolutions/nx-karma-to-jest
+ng add @ypolosov/nx-karma-to-jest
 ```
 
 ## Description

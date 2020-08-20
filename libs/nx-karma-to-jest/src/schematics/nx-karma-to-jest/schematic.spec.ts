@@ -247,7 +247,7 @@ describe('nx-karma-to-jest schematic', () => {
   let appTree: Tree;
 
   const runner = new SchematicTestRunner(
-    '@offeringsolutions/nx-karma-to-jest',
+    '@ypolosov/nx-karma-to-jest',
     join(__dirname, '../../../collection.json')
   );
 
