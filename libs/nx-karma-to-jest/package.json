@@ -11,11 +11,12 @@
     "karma",
     "jest"
   ],
-  "author": "Fabian Gosebrink",
+  "private": false,
+  "author": "Yuriy Polosov",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FabianGosebrink/nx-karma-to-jest.git"
+    "url": "https://github.com/ypolosov/nx-karma-to-jest.git"
   },
   "description": "Replacing Karma with Jest in an nx workspace"
 }
