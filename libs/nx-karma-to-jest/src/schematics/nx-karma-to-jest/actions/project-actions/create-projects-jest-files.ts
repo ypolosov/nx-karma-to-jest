@@ -99,7 +99,7 @@ function createProjectLibTsConfig(
   project: experimental.workspace.WorkspaceProject,
   context: SchematicContext
 ) {
-  const path = `${project.root}/tsconfig.json`;
+  const path = `${project.root}/tsconfig.lib.json`;
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
   const content = `
   {
