@@ -128,29 +128,28 @@ function createProjectTsConfig(
   context: SchematicContext
 ) {
   const path = `${project.root}/tsconfig.json`;
-  // if (!tree.exists(path)) {
-  //   context.logger.info(`${path} does not exist, skipping`);
-  //   return;
-  // }
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
-  tree.overwrite(
-    path,
-    `
-{
-    "extends": "${folderDeepness}tsconfig.base.json",
-    "files": [],
-    "include": [],
-    "references": [
-      {
-        "path": "./tsconfig.lib.json"
-      },
-      {
-        "path": "./tsconfig.spec.json"
-      }
-    ]
-}
-`
-  );
+  const content = `
+  {
+      "extends": "${folderDeepness}tsconfig.base.json",
+      "files": [],
+      "include": [],
+      "references": [
+        {
+          "path": "./tsconfig.lib.json"
+        },
+        {
+          "path": "./tsconfig.spec.json"
+        }
+      ]
+  }
+
+  `;
+  if (!tree.exists(path)) {
+    tree.create(path, content);
+  } else {
+    tree.overwrite(path, content);
+  }
 }
 
 function createTestSetup(

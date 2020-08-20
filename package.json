@@ -30,7 +30,7 @@
     "test:nx:karma:to:jest": "nx test nx-karma-to-jest",
     "test:nx:karma:to:jest:watch": "nx test nx-karma-to-jest --watch",
     "release:dryrun": "npm run build:nx:karma:to:jest && cd dist/libs/nx-karma-to-jest && release-it --dry-run",
-    "release": "npm run build:nx:karma:to:jest && cd dist/libs/nx-karma-to-jest && release-it"
+    "release": "npm run build:nx:karma:to:jest && cd dist/libs/nx-karma-to-jest && npm publish --access public"
   },
   "private": false,
   "devDependencies": {
