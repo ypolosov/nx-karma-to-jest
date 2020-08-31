@@ -45,8 +45,7 @@ function createProjectJestConfig(
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
   tree.create(
     path,
-    `
-module.exports = {
+    `module.exports = {
   name: '${projectName}',
   preset: '${folderDeepness}jest.config.js',
   coverageDirectory: '${folderDeepness}coverage/${projectType}/${projectName}',
@@ -55,8 +54,7 @@ module.exports = {
       'jest-preset-angular/build/AngularSnapshotSerializer.js',
       'jest-preset-angular/build/HTMLCommentSerializer.js'
   ]
-};
-`
+};`
   );
 }
 
@@ -67,8 +65,7 @@ function createProjectSpecTsConfig(
 ) {
   const path = `${project.root}/tsconfig.spec.json`;
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
-  const content = `
-  {
+  const content = `{
       "extends": "./tsconfig.json",
       "compilerOptions": {
           "outDir": "${folderDeepness}dist/out-tsc",
@@ -85,8 +82,7 @@ function createProjectSpecTsConfig(
           "**/*.spec.ts",
           "**/*.d.ts"
       ]
-  }
-  `;
+  }`;
   if (!tree.exists(path)) {
     tree.create(path, content);
   } else {
@@ -101,16 +97,14 @@ function createProjectLibTsConfig(
 ) {
   const path = `${project.root}/tsconfig.lib.json`;
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
-  const content = `
-  {
+  const content = `{
     "extends": "./tsconfig.json",
     "compilerOptions": {
       "outDir": "${folderDeepness}dist/out-tsc",
-      "types": [],
+      "types": []
     },
     "exclude": ["src/test.ts", "**/*.spec.ts"]
-  }
-  `;
+  }`;
   if (!tree.exists(path)) {
     tree.create(path, content);
   } else {
@@ -125,22 +119,9 @@ function createProjectTsConfig(
 ) {
   const path = `${project.root}/tsconfig.json`;
   const folderDeepness = calculateTraverseUptoRootPath(project.root);
-  const content = `
-  {
-      "extends": "${folderDeepness}tsconfig.base.json",
-      "files": [],
-      "include": [],
-      "references": [
-        {
-          "path": "./tsconfig.lib.json"
-        },
-        {
-          "path": "./tsconfig.spec.json"
-        }
-      ]
-  }
-
-  `;
+  const content = `{
+      "extends": "${folderDeepness}tsconfig.json"
+  }`;
   if (!tree.exists(path)) {
     tree.create(path, content);
   } else {
